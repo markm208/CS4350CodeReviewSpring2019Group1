@@ -48,5 +48,16 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     //newWholeNum being an int will prevent us from getting any decimals and still uphold spec
     int newWholeNum = multipliedNumerators / multipliedDenominators; 
 
+    //to get the decimal portion of the "float" we will use a helper function which takes the 
+    //value of the multiplied denominators and the remainder of the division between the multiplied
+    //numerators and denominators
+    getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators));
+
     return retval;
 }
+
+int getDecimalPortion(int divider, int dividedBy) //newfunction to get the decimal portion of float
+{                                                 //divider divided by dividedBy 
+    
+}
+
