@@ -36,11 +36,12 @@ int main()
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
     bool retval = false; //assume there will be errors
+    result[len -1] ='/0'; // place null terminated char at end of result so its not left off by mistake
     int newNumeratorOne = c1 + n1; //add the whole number to the numerator for first number
     int newNumeratorTwo = c2+n2; //add the whole to the numerator for second number
     int multipliedNumerators = newNumeratorOne * newNumeratorTwo; //multiply the numerators together
     int multipliedDenominators = d1 * d2; //no converting needs to be done to the denominators so they are multiplied together
-    //now left with imperfect fraction 
+    //now left with improper fraction which must be converted to decimal
 
     return retval;
 }
