@@ -42,7 +42,11 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     int newNumeratorTwo = (c2*d2)+n2; //repeat above for second fraction
     int multipliedNumerators = newNumeratorOne * newNumeratorTwo; //multiply the numerators together
     int multipliedDenominators = d1 * d2; //no converting needs to be done to the denominators so they are multiplied together
+    
     //now left with improper fraction which must be converted to decimal
+    //to get the whole number first we must divide the new numerator by its denominator
+    //newWholeNum being an int will prevent us from getting any decimals and still uphold spec
+    int newWholeNum = multipliedNumerators / multipliedDenominators; 
 
     return retval;
 }
