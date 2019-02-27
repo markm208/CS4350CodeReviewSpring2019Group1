@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    
+
     return 0;
 }
 
@@ -12,5 +12,5 @@ int main()
 
 bool subtract() 
 {
-
+    cout << "Hello World" << endl;
 }
