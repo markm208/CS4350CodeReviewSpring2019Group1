@@ -47,17 +47,24 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     //to get the whole number first we must divide the new numerator by its denominator
     //newWholeNum being an int will prevent us from getting any decimals and still uphold spec
     int newWholeNum = multipliedNumerators / multipliedDenominators; 
+    result[0] = (char)newWholeNum; //?????????
+    cout<<result[0]<<endl;
 
     //to get the decimal portion of the "float" we will use a helper function which takes the 
     //value of the multiplied denominators and the remainder of the division between the multiplied
-    //numerators and denominators
-    getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators));
+    //numerators and denominators, as well as the length -1 to not overwrite the null terminated char
+    getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators),len-1);
 
     return retval;
 }
 
-int getDecimalPortion(int divider, int dividedBy) //newfunction to get the decimal portion of float
+char* getDecimalPortion(int divider, int dividedBy,int len) //newfunction to get the decimal portion of float
 {                                                 //divider divided by dividedBy 
-    
+    char* arr = new char[9];
+    int counter = 0; 
+    while(divider % dividedBy > 1 && counter < len)
+    {
+
+    }
 }
 
