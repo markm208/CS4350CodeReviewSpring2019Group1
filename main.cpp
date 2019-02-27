@@ -4,7 +4,13 @@ using namespace std;
 
 int main()
 {
+    
     return 0;
 }
 
 //new functions go here
+
+bool subtract() 
+{
+
+}
