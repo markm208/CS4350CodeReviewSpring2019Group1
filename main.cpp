@@ -82,52 +82,20 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 
 char* convertToChars(int toBeConverted,int len)
 {
-    //to isolate digits to cast to chars -> use mods of 10 and regular division as well
-    char* arr = new char[len];
-    if(toBeConverted >= 1000000000) //int max is 10 numbers long so it is possible for something to be this long
-    {
-
-    }
-    else if(toBeConverted >= 100000000 && toBeConverted < 1000000000) //9 numbers long
-    {
-
-    }
-    else if(toBeConverted >= 10000000 && toBeConverted < 100000000) //8 numbers long
-    {
-
-    }
-    else if(toBeConverted >= 1000000 && toBeConverted < 10000000) //7 numbers long
-    {
-        
-    }
-    else if(toBeConverted >= 100000 && toBeConverted < 1000000) //6 numbers long
-    {
-
-    }
-    else if(toBeConverted >= 10000 && toBeConverted < 100000) //5 numbers long
-    {
-        
-    }
-    else if(toBeConverted >= 1000 && toBeConverted < 10000) //4 numbers long
-    {
-        
-    }
-    else if(toBeConverted >= 100 && toBeConverted < 1000) //3 numbers long
-    {
-        
-    }
-    else if(toBeConverted >= 10 && toBeConverted < 100) //2 numbers long
-    {
-        arr[1] = toBeConverted % 10; //ones place
-        arr[0] = toBeConverted % 10; //placeholder for tens place
-    }
-    else if(toBeConverted < 10) //1 number long
-    {
-        arr[0] = toBeConverted;
-    }
-
-    return arr;
-
+	char* arr = new char[len]; //array to hold values, will be in reverse order 
+	for (int i = 0; i < len-2; i++)
+	{
+		arr[i] = 0; //fill array with zeroes for easier parsing later
+	}
+	arr[len - 1] = '\0';
+	int count = len-2;
+	while (toBeConverted > 0)
+	{
+		arr[count] = toBeConverted % 10; 
+		count--; //putting actual number at end makes it easier to remove zeroes later on 
+		toBeConverted = toBeConverted / 10;
+	}
+	return arr;
 }
 char* getDecimalPortion(int dividedInto, int dividedBy,int len) //newfunction to get the decimal portion of float
 {                                                 //dividedInto divided by dividedBy 
