@@ -39,9 +39,9 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 {
     bool retval = false; //assume there will be errors
     result[len] ='\0'; // place null terminated char at end of result so its not left off by mistake
-     int newNumeratorOne = 0;
-     int newNumeratorTwo = 0;
-     int multipliedDenominators = 1;
+    int newNumeratorOne = 0;
+    int newNumeratorTwo = 0;
+    int multipliedDenominators = 1;
     if(d1 == 0 && d2!= 0)
     {
         newNumeratorOne = c1;
@@ -75,7 +75,7 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 		pos++; //increment until we hit something that isn't a zero
 	}
 	int i = 0; //will be used to move through result array
-	while (toChar[pos] != '/0')
+	while (toChar[pos] != '/0' && i < len)
 	{
 		result[i] = toChar[pos]; //this will put the number in the correct order at the front of the result array
 		pos++; 
