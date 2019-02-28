@@ -69,7 +69,18 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     //newWholeNum being an int will prevent us from getting any decimals and still uphold spec
     int newWholeNum = multipliedNumerators / multipliedDenominators; 
     char* toChar = convertToChars(newWholeNum,len); 
-
+    int pos = 0; //start at beginning of array
+	while (toChar[pos] == 0)
+	{
+		pos++; //increment until we hit something that isn't a zero
+	}
+	int i = 0; //will be used to move through result array
+	while (toChar[pos] != '/0')
+	{
+		result[i] = toChar[pos]; //this will put the number in the correct order at the front of the result array
+		pos++; 
+		i++;
+	}
     //to get the decimal portion of the "float" we will use a helper function which takes the 
     //value of the multiplied denominators and the remainder of the division between the multiplied
     //numerators and denominators, as well as the length -1 to not overwrite the null terminated char
