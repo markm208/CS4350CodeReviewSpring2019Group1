@@ -28,6 +28,9 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     {
         decimalNums = 100 + decimalNums;    // Just in case the decimals come out to be negative. 
     }
-    
-    
+
+    for (int i = 0; i < len; i++) 
+    {
+       
+    }
 }
