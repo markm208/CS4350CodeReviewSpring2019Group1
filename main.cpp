@@ -70,12 +70,19 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	//to get the whole number first we must divide the new numerator by its denominator
 	//newWholeNum being an int will prevent us from getting any decimals and still uphold spec
 	int newWholeNum = multipliedNumerators / multipliedDenominators;
+
+	//we now must get the character array of the whole number and put it into our results
 	char * toChar = convertToChars(newWholeNum, len);
-	int pos = 0; //start at beginning of array
+	int pos = 0; //start at beginning of toChar array
+
+	//this loop checks for leading zeroes and makes sure none are picked up as part of the answer
 	while (toChar[pos] == 0)
 	{
 		pos++; //increment until we hit something that isn't a zeros
 	}
+
+	//this loop moves through the result array from the beginning and inserts the answer from toChar
+	//this will remove the need for leading zeroes
 	int i = 0; //will be used to move through result array
   	while (pos< len && i < len)
 	{
@@ -87,7 +94,9 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	//value of the multiplied denominators and the remainder of the division between the multiplied
 	//numerators and denominators, as well as the length -1 to not overwrite the null terminated char
 	char* decimals = getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators), len - 1);
-	retval = true;
+	
+	
+	retval = true; //TODO: move this into code block that checks if we can get decimals in the correct place
 	delete decimals; //free memory
 	delete toChar;
 	return retval;
