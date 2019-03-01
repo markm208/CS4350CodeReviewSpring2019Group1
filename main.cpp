@@ -77,10 +77,19 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 		pos++; //increment until we hit something that isn't a zeros
 	}
 	int i = 0; //will be used to move through result array
- 	while (pos < len && i < len)
+ 	bool seenNonZero = false; //keep track whether or not we have seen a non zero number
+ 	while (pos< len && i < len)
 	{
-		result[i] = toChar[pos]; //this will put the number in the correct order at the front of the result array
-		pos++; 
+		if (toChar[pos] != 0 && seenNonZero == false) //if we haven't seen one then we have not reached proper number yet
+		{
+			seenNonZero = true; //once we have seen one set this to true and store the number
+			result[i] = toChar[pos]; //this will put the number in the correct order at the front of the result array
+		}
+		else
+		{
+			result[i] = toChar[pos]; //otherwise we have seen a nonzero before and the zeroes we are seeing are important (such as in 20)
+		}
+		pos++; //either way increment both arrays
 		i++;
 	}
 	//to get the decimal portion of the "float" we will use a helper function which takes the 
