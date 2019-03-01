@@ -70,8 +70,8 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     int newWholeNum = multipliedNumerators / multipliedDenominators; 
     char* toChar = convertToChars(newWholeNum,len); 
     int pos = 0; //start at beginning of array
-	while (toChar[pos] == 0)
-	{
+	while (toChar[pos] == 0) //since we filled toChar with zeroes, we can iterate through it until
+	{                       //we hit a nonzero to find the start of the proper number
 		pos++; //increment until we hit something that isn't a zero
 	}
 	int i = 0; //will be used to move through result array
@@ -94,12 +94,12 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 char* convertToChars(int toBeConverted,int len)
 {
 	char* arr = new char[len]; //array to hold values, will be in reverse order 
-	for (int i = 0; i < len-2; i++)
+	for (int i = 0; i < len-1; i++)
 	{
 		arr[i] = 0; //fill array with zeroes for easier parsing later
 	}
-	arr[len - 1] = '\0';
-	int count = len-2;
+	arr[len] = '\0';
+	int count = len-1; //start from one less then len to avoid overwriting null char
 	while (toBeConverted > 0)
 	{
 		arr[count] = toBeConverted % 10; 
@@ -107,6 +107,7 @@ char* convertToChars(int toBeConverted,int len)
 		toBeConverted = toBeConverted / 10;
 	}
 	return arr;
+
 }
 char* getDecimalPortion(int dividedInto, int dividedBy,int len) //newfunction to get the decimal portion of float
 {                                                 //dividedInto divided by dividedBy 
