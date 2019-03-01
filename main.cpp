@@ -34,6 +34,8 @@ int main()
 
 bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) 
 {
-    //Wasn't able to make this happen today. 
+
+    //Wasn't able to make this happen. 
+    
    return false;
 }
