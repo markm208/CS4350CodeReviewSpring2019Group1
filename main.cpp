@@ -6,79 +6,120 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 
 int main()
 {
-    const int len = 10;
-    char answer[10];
-    int c1, n1, d1;
-    int c2, n2, d2;
-    
-    c1 = 1;
-    n1 = 1;
-    d1 = 2;
-    
-    c2 = 2;
-    n2 = 2;
-    d2 = 3; 
-    
-    //if the C string could hold at least the characteristic
-    if(add(c1, n1, d1, c2, n2, d2, answer, 10))
-    {
-        //display string with answer 4.1666666
-    }
-    else
-    {
-        //display error message
-    }
+	const int len = 10;
+	char answer[len];
+	int c1, n1, d1;
+	int c2, n2, d2;
 
-    return 0;
+	c1 = 1;
+	n1 = 1;
+	d1 = 2;
+
+	c2 = 2;
+	n2 = 2;
+	d2 = 3;
+
+	if (add(c1, n1, d1, c2, n2, d2, answer, len))
+	{
+		cout << "The result is: ";
+		for (int i = 0; i < len; i++)
+		{
+			cout << answer[i];
+		}
+		cout << endl;
+	}
+	else
+	{
+		cout << "Answer is to large for indicated size." << endl;
+	}
+
+	system("pause");
+	return 0;
 }
 
 //new functions go here
 bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
-    int numberOne = c1 * d1 + n1;
-    int numberTwo = c2 * d2 + n2;
-    int newDenominator;
-    
-    if(d1 != d2)
-    {
-        numberOne = numberOne * d2;
-        numberTwo = numberTwo * d1;
-        newDenominator = d1 * d2;
-    }
-    else
-    {
-        newDenominator = d1;
-    }
+	int numberOne = c1 * d1 + n1;
+	int numberTwo = c2 * d2 + n2;
+	int newDenominator;
+	int counter = 0;
+	bool retVal = true;
 
-    int newNumerator = numberOne + numberTwo;
-    float returnNum = newNumerator/newDenominator;
-    float temp = returnNum;
-    int deciCount = 0;
-    int wholeCount = 0;
+	if (d1 != d2)
+	{
+		numberOne = numberOne * d2;
+		numberTwo = numberTwo * d1;
+		newDenominator = d1 * d2;
+	}
+	else
+	{
+		newDenominator = d1;
+	}
 
-    while(temp > 1)
-    {
-        wholeCount++;
-        temp/10;
-    }
+	int newNumerator = numberOne + numberTwo;
+	int charact = newNumerator / newDenominator;
 
-    if(len - wholeCount < 0)
-    {
-        return false;
-    }
-    else
-    {
-        int left = len - wholeCount;
-        int divisor = 1;
-        for(int i = left; i > 0; i--)
-        {
-            divisor = divisor * 10;
-        }
-        returnNum = returnNum * divisor;
+	int temp = charact;
+	int digitsLeft;
 
-        float answer = returnNum / divisor;
-    }
+	while (temp != 0)
+	{
+		counter++;
+		temp = temp / 10;
+	}
 
+	if (counter + 2 > len)
+	{
+		return false;
+	}
+	else
+	{
+		temp = charact;
 
-    
+		if (counter == 0)
+		{
+			result[counter] = '0';
+			result[counter + 1] = '.';
+			counter += 2;
+		}
+		else
+		{
+			result[counter] = '.';
+
+			for (int i = counter; i > 0; i--)
+			{
+				int remainder = temp % 10;
+				result[i - 1] = char('0' + remainder);
+				temp = temp / 10;
+			}
+
+			counter++;
+		}
+
+		digitsLeft = len - (counter);
+	}
+
+	int multiplier = 1;
+	int digitsRem = digitsLeft;
+
+	while (digitsRem != 0)
+	{
+		multiplier = multiplier * 10;
+		digitsRem--;
+	}
+
+	int mantissa = (newNumerator * multiplier) / newDenominator;
+
+	temp = mantissa;
+
+	for (int i = 0; i < len - counter; i++)
+	{
+		int remainder = temp % 10;
+		result[len - i - 1] = char('0' + remainder);
+		temp = temp / 10;
+	}
+
+	return retVal;
+
 }
