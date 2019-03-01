@@ -2,7 +2,6 @@
 
 using namespace std;
 
-void subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 
 int main()
 {
@@ -13,7 +12,6 @@ int main()
     char answer[5];
     int c1, n1, d1;
     int c2, n2, d2;
-    subtract(2,66,100,1,50,100,answer,3);
 
     return 0;
 }
@@ -32,4 +30,5 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 
    // I can't figure out how to split the integers up to place them inside a char array.
    // Tried but couldn't make it happen. 
+   return false;
 }
