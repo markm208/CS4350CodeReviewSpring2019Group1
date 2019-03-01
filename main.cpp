@@ -94,7 +94,28 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	//value of the multiplied denominators and the remainder of the division between the multiplied
 	//numerators and denominators, as well as the length -1 to not overwrite the null terminated char
 	char* decimals = getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators), len - 1);
-	
+		
+	i++; //i still holds the position from the whole number insertion, and so moving one past it will-
+		//-allow us to avoid overwriting it 
+	result[i] = '.'; //at this point we know for sure we are at the decimal portion, and can add the point
+	i++; //increment one more time to avoid overwriting decimal point
+	pos = 0; //reset pos to be at zero so we can start from beginning of decimal array
+
+	while (i < len) //begin moving through the result array and the decimal array and join them together 
+	{
+		result[i] = decimals[pos]; 
+		i++;
+		pos++;
+		if (i == len)
+		{
+			retval = true; //if we got to here its safe to assume we were able to insert things without issue and can set-
+						//-retval to true
+		}
+	}
+
+	i = 0; //reset i just to make sure next pass through function has clean slate
+	pos = 0;//reset pos just to make sure next pass through function has clean slate
+
 	
 	retval = true; //TODO: move this into code block that checks if we can get decimals in the correct place
 	delete decimals; //free memory
