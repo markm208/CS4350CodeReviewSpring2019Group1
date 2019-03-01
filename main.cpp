@@ -101,7 +101,7 @@ char* convertToChars(int toBeConverted, int len)
 	{
 		arr[i] = static_cast<char>(0); //fill array with zeroes for easier parsing later
 	}
-	//arr[len-1] = '\0';
+	arr[len-1] = '\0';
 	int count = len-2; //start from one less then len to avoid overwriting null char
 	while (toBeConverted > 0)
 	{
