@@ -48,6 +48,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 
 	if (d1 != d2)
 	{
+		//Convert the fractions into improper fractions first.
 		numberOne = numberOne * d2;
 		numberTwo = numberTwo * d1;
 		newDenominator = d1 * d2;
@@ -56,12 +57,15 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 	{
 		newDenominator = d1;
 	}
-
+	
+	//Create the new numerator
 	int newNumerator = numberOne + numberTwo;
+	//charact is the new main number.
 	int charact = newNumerator / newDenominator;
 
 	int temp = charact;
 	int digitsLeft;
+
 
 	while (temp != 0)
 	{
@@ -69,6 +73,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 		temp = temp / 10;
 	}
 
+	//See if it is possible to return the function.
 	if (counter + 2 > len)
 	{
 		return false;
@@ -109,7 +114,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 		digitsRem--;
 	}
 
-	long mantissa = 0;
+	unsigned long mantissa = 0;
 	mantissa = (newNumerator * multiplier);
 	mantissa = mantissa / newDenominator;
 
