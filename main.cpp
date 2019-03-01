@@ -13,6 +13,18 @@ int main()
     int c1, n1, d1;
     int c2, n2, d2;
 
+    if(subtract(c1, n1, d1, c2, n2, d2, answer, 10))
+    {
+        for (int i = 0; i < len; i++)
+        {
+            cout << answer[i];
+        }
+    }
+    else
+    {
+        cout << "Error Computing" << endl;
+    }
+
     return 0;
 }
 
@@ -20,15 +32,6 @@ int main()
 
 bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) 
 {
-    int wholeNums = c1 - c2;    // This will give us the first thing to be put into the result array
-    int decimalNums = n1 - n2;   //This will give us the second thing to be put into the result array
-
-    if (decimalNums < 0) 
-    {
-        decimalNums = 100 + decimalNums;    // Just in case the decimals come out to be negative. 
-    }
-
-   // I can't figure out how to split the integers up to place them inside a char array.
-   // Tried but couldn't make it happen. 
+    //Wasn't able to make this happen today. 
    return false;
 }
