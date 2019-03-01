@@ -91,40 +91,43 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     return retval;
 }
 
-char* convertToChars(int toBeConverted,int len)
+char* convertToChars(int toBeConverted, int len)
 {
+	//to isolate digits to cast to chars -> use mods of 10 and regular division as well
 	char* arr = new char[len]; //array to hold values, will be in reverse order 
-	for (int i = 0; i < len-1; i++)
+	for (int i = 0; i < len-2; i++)
 	{
 		arr[i] = 0; //fill array with zeroes for easier parsing later
 	}
-	arr[len] = '\0';
-	int count = len-1; //start from one less then len to avoid overwriting null char
+	arr[len-1] = '\0';
+	cout << arr[len] << endl;
+	int count = len-2; //start from one less then len to avoid overwriting null char
 	while (toBeConverted > 0)
 	{
 		arr[count] = toBeConverted % 10; 
 		count--; //putting actual number at end makes it easier to remove zeroes later on 
 		toBeConverted = toBeConverted / 10;
+		cout << arr[count] << endl;
 	}
 	return arr;
 
 }
-char* getDecimalPortion(int dividedInto, int dividedBy,int len) //newfunction to get the decimal portion of float
+char* getDecimalPortion(int dividedInto, int dividedBy, int len) //newfunction to get the decimal portion of float
 {                                                 //dividedInto divided by dividedBy 
-    char* arr = new char[len];
-    arr[0] = dividedBy; //assign first position in array to be first remainder
-    int counter = 1; 
-    if(dividedBy > 0)
-    {
-        while(dividedInto % dividedBy > 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily 
-    {
-        arr[counter] = dividedInto % dividedBy;
-        dividedInto = dividedBy;
-        dividedBy = arr[counter];
-        counter++;
-    }
-    }
-    return arr;
+	char* arr = new char[len];
+	arr[0] = dividedBy; //assign first position in array to be first remainder
+	int counter = 1;
+	if (dividedBy > 0)
+	{
+		while (dividedInto % dividedBy > 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily 
+		{
+			arr[counter] = dividedInto % dividedBy;
+			dividedInto = dividedBy;
+			dividedBy = arr[counter];
+			counter++;
+		}
+	}
+	return arr;
 }
 
 
