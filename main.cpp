@@ -12,7 +12,8 @@ int main()
 	{
 		for (int i = 0; i < 4; i++) //avoid /0 being printed
 		{
-			cout << result[i] << endl;
+			cout << static_cast<int>(result[i]) << endl; //have to cast back to an int to get proper numbers
+														//anything over 255 cast as a char will result in wrong values being printed otherwise
 		}
 	}
 	else
@@ -23,7 +24,7 @@ int main()
 	{
 		for (int i = 0; i < 9; i++) //avoid /0 being printed
 		{
-			cout << result[i] << endl;
+			cout << static_cast<int>(result[i]) << endl;
 		}
 	}
 	else
