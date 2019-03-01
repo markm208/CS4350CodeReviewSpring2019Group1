@@ -76,7 +76,7 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 		pos++; //increment until we hit something that isn't a zeros
 	}
 	int i = 0; //will be used to move through result array
- 	while (toChar[pos] != '/0' && i < len)
+ 	while (pos < len && i < len)
 	{
 		result[i] = toChar[pos]; //this will put the number in the correct order at the front of the result array
 		pos++; 
@@ -98,13 +98,13 @@ char* convertToChars(int toBeConverted, int len)
 	char* arr = new char[len]; //array to hold values, will be in reverse order 
 	for (int i = 0; i < len-2; i++)
 	{
-		arr[i] = (char)0; //fill array with zeroes for easier parsing later
+		arr[i] = static_cast<char>(0); //fill array with zeroes for easier parsing later
 	}
 	//arr[len-1] = '\0';
 	int count = len-2; //start from one less then len to avoid overwriting null char
 	while (toBeConverted > 0)
 	{
-		arr[count] = (char)(toBeConverted % 10); 
+		arr[count] = static_cast<char>(toBeConverted % 10); 
 		count--; //putting actual number at end makes it easier to remove zeroes later on 
 		toBeConverted = toBeConverted / 10;
 	}
@@ -114,13 +114,13 @@ char* convertToChars(int toBeConverted, int len)
 char* getDecimalPortion(int dividedInto, int dividedBy, int len) //newfunction to get the decimal portion of float
 {                                                 //dividedInto divided by dividedBy 
 	char* arr = new char[len];
-	arr[0] = (char)dividedBy; //assign first position in array to be first remainder
+	arr[0] = static_cast<char>(dividedBy); //assign first position in array to be first remainder
 	int counter = 1;
 	if (dividedBy > 0)
 	{
 		while (dividedInto % dividedBy > 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily 
 		{
-			arr[counter] = (char)(dividedInto % dividedBy);
+			arr[counter] = static_cast<char>(dividedInto % dividedBy);
 			dividedInto = dividedBy;
 			dividedBy = arr[counter];
 			counter++;
