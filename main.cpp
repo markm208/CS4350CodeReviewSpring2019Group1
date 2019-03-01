@@ -12,12 +12,12 @@ int main()
 	int c2, n2, d2;
 
 	c1 = 1;
-	n1 = 1;
-	d1 = 2;
+	n1 = 3;
+	d1 = 4;
 
 	c2 = 2;
-	n2 = 2;
-	d2 = 3;
+	n2 = 1;
+	d2 = 2;
 
 	if (add(c1, n1, d1, c2, n2, d2, answer, len))
 	{
@@ -109,7 +109,9 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 		digitsRem--;
 	}
 
-	int mantissa = (newNumerator * multiplier) / newDenominator;
+	long mantissa = 0;
+	mantissa = (newNumerator * multiplier);
+	mantissa = mantissa / newDenominator;
 
 	temp = mantissa;
 
