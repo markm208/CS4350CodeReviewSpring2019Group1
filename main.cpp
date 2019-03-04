@@ -50,7 +50,41 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
     // Subtract newly complex numbers
     int subtractedNum = numberOne - numberTwo;
     int newCharacteristic = subtractedNum / commonDenom;
-    cout << newCharacteristic << endl;
+    //cout << newCharacteristic << endl;
+    
+    // Calculating how many digets the characteristic has in it
+    int digetcounter;
+    int temporaryNumber;
+    while (temporaryNumber != 0)
+    {
+        digetcounter++;
+        temporaryNumber = temporaryNumber / 10;
+    }
+    if (digetcounter > len)
+    {
+        return false;
+    }
+    else
+    {
+        // For if the number is less than 1 but greater than 0
+        if (digetcounter == 0)
+        {
+            result[0] = '.';
+            digetcounter++;
+        }
+        else
+        {
+            for (int i = 0; i < digetcounter; i++)
+            {
+                int r = temporaryNumber % 10;
+                result[i + 1] = char('0' + r);
+                temporaryNumber = temporaryNumber / 10;
+            }
+            digetcounter++;
+        }
+        
+    }
+    
     
    return false;
 }
