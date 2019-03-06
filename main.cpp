@@ -106,8 +106,8 @@ bool checkValidCharacteristic(char*& numString){
         ptr++;
     }
 
-    //at any point, if the numString contains a '.', the atoi function will break there, and the characteristic
-    //will be found. 
+    //at any point, if the numString contains a '.', the atoi function will break there, 
+    //and the characteristic will be found. 
     while(*ptr!='\0'){
         if(*ptr=='.'){
             return true;
