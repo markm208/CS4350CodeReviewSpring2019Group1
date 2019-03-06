@@ -13,7 +13,7 @@ int main()
     char answer[5];
     int len = 10;
     int c1 = 20; int n1 = 66; int d1 = 100;
-    int c2 = 10; int n2 = 5; int d2 = 10;
+    int c2 = 10; int n2 = 50; int d2 = 100;
 
     if(subtract(c1, n1, d1, c2, n2, d2, answer, len))
     {
@@ -76,6 +76,7 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
         {
             for (int i = 0; i < digetcounter; i++)
             {
+                //  Trying to place the numbers inside the char array.
                 int r = temporaryNumber % 10;
                 result[i + 1] = char('0' + r);
                 temporaryNumber = temporaryNumber / 10;
@@ -84,7 +85,10 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
         }
         
     }
+    //cout << digetcounter << endl;
+    //  Trying to work back out of the complex fraction
+    int remaindingDec = (newCharacteristic * digetcounter) / commonDenom;
+    //cout << remaindingDec << endl;
     
-    
-   return false;
+   return true;
 }
