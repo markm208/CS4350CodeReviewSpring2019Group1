@@ -12,9 +12,10 @@ int main()
 	{
 		for (int i = 0; i < 4; i++) //avoid /0 being printed
 		{
-			cout << static_cast<int>(result[i]) << endl; //have to cast back to an int to get proper numbers
-														 //anything over 255 cast as a char will result in wrong values being printed otherwise
+			cout << static_cast<int>(result[i]); //have to cast back to an int to get proper numbers
+												//anything over 255 cast as a char will result in wrong values being printed otherwise
 		}
+		cout << endl;
 	}
 	else
 	{
@@ -24,8 +25,9 @@ int main()
 	{
 		for (int i = 0; i < 9; i++) //avoid /0 being printed
 		{
-			cout << static_cast<int>(result[i]) << endl;
+			cout << static_cast<int>(result[i]);
 		}
+		cout << endl;
 	}
 	else
 	{
@@ -116,6 +118,7 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	i = 0;   //reset i just to make sure next pass through function has clean slate
 	pos = 0; //reset pos just to make sure next pass through function has clean slate
 
+	retval = true;	 //TODO: move this into code block that checks if we can get decimals in the correct place
 	delete[] decimals; //free memory
 	delete[] toChar;
 	return retval;
