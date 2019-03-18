@@ -5,12 +5,12 @@ using namespace std;
 bool characteristic(char numString[], int& c);
 char* removeSpaces(char*& numString);
 bool checkValidCharacteristic(char*& numString);
-void test(char* num, int& c);
+//void test(char* num, int& c);
 int atoiReplica(char*& numString);
 
 int main()
 {
-    int c = 0;
+    /*int c = 0;
     char* num;
     num = "123.456";
     test(num, c);//good
@@ -24,10 +24,10 @@ int main()
     test(num, c);//good
 
     num = "-0.123";
-    test(num,c); //good?
+    test(num,c); //good?*/
 }
 
-void test(char* num, int& c){
+/*void test(char* num, int& c){
     if(characteristic(num,c)){
         cout<<"good"<<endl;
         cout<<c<<endl;
@@ -35,7 +35,7 @@ void test(char* num, int& c){
     else{
         cout<<"bad"<<endl;
     }
-}
+}*/
 
 //new functions go here
 
