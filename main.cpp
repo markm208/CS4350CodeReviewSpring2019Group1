@@ -13,7 +13,7 @@ int main()
 		for (int i = 0; i < 4; i++) //avoid /0 being printed
 		{
 			cout << static_cast<int>(result[i]); //have to cast back to an int to get proper numbers
-												//anything over 255 cast as a char will result in wrong values being printed otherwise
+												 //anything over 255 cast as a char will result in wrong values being printed otherwise
 		}
 		cout << endl;
 	}
@@ -41,8 +41,14 @@ int main()
 //new functions go here
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
-	bool retval = false;	//assume there will be errors
-	result[len - 1] = '\0'; // place null terminated char at end of result so its not left off by mistake
+	bool retval = false;	 //assume there will be errors
+	result[len - 1] = '\0';  // place null terminated char at end of result so its not left off by mistake
+	bool isNegative = false; //assume both are positive
+	if (c1 < 0 && c2 >= 0 || c1 >= 0 && c2 < 0)
+	{
+		//one number is negative, but not both means the answer will be negative.
+		isNegative = true;
+	}
 	int newNumeratorOne = 0;
 	int newNumeratorTwo = 0;
 	int multipliedDenominators = 1;
@@ -76,6 +82,14 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	//we now must get the character array of the whole number and put it into our results
 	char *toChar = convertToChars(newWholeNum, len);
 	int pos = 0; //start at beginning of toChar array
+	//however if we have a negative we must insert a negative sign at the beginning instead
+	if (isNegative == true)
+	{
+		//pos now begins at 1
+		pos = 1;
+		//first member of result is now a negative
+		result[0] = '-';
+	}
 
 	//this loop checks for leading zeroes and makes sure none are picked up as part of the answer
 	while (toChar[pos] == 0)
@@ -118,7 +132,6 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	i = 0;   //reset i just to make sure next pass through function has clean slate
 	pos = 0; //reset pos just to make sure next pass through function has clean slate
 
-	retval = true;	 //TODO: move this into code block that checks if we can get decimals in the correct place
 	delete[] decimals; //free memory
 	delete[] toChar;
 	return retval;
@@ -128,12 +141,12 @@ char *convertToChars(int toBeConverted, int len)
 {
 	//to isolate digits to cast to chars -> use mods of 10 and regular division as well
 	char *arr = new char[len]; //array to hold values, will be in reverse order
-	for (int i = 0; i < len - 2; i++)
+	for (int i = 0; i < len - 1; i++)
 	{
 		arr[i] = static_cast<char>(0); //fill array with zeroes for easier parsing later
 	}
 	arr[len - 1] = '\0';
-	int count = len - 2; //start from two less then len to avoid overwriting null charA
+	int count = len - 2; //start from two less then len to avoid overwriting null char
 	while (toBeConverted > 0)
 	{
 		arr[count] = static_cast<char>(toBeConverted % 10);
