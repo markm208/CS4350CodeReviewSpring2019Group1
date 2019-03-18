@@ -39,22 +39,21 @@ int main()
 
 bool characteristic(char* numString, int& c){
     //removes all ' ' from the numString array, which gets returned as a new array
-    //numString is not passed by reference, so it can be overwritten without altering the input
-    numString = removeSpaces(numString);
+    char* numStringtemp = removeSpaces(numString);
     //numString now points to a dynamically allocated array, containing the original string without spaces
 
     //check for all values in the array being a number, '-', '+', or '.'
-    if(!checkValidCharacteristic(numString)){
-        delete[] numString;
+    if(!checkValidCharacteristic(numStringtemp)){
+        delete[] numStringtemp;
         return false;
     }
     
     //at this point, the characteristic is valid, return a valid characteristic (up to '.')
     //can't use atoi,     c = atoi(numString);
-    c = atoiReplica(numString);
+    c = atoiReplica(numStringtemp);
 
     //numString will point to the dynamically allocated array
-    delete[] numString;
+    delete[] numStringtemp;
 
     return true;
 }
