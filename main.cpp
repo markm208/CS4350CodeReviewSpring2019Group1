@@ -116,7 +116,6 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	i = 0;   //reset i just to make sure next pass through function has clean slate
 	pos = 0; //reset pos just to make sure next pass through function has clean slate
 
-	retval = true;	 //TODO: move this into code block that checks if we can get decimals in the correct place
 	delete[] decimals; //free memory
 	delete[] toChar;
 	return retval;
