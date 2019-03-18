@@ -6,6 +6,7 @@ bool characteristic(char numString[], int& c);
 char* removeSpaces(char*& numString);
 bool checkValidCharacteristic(char*& numString);
 void test(char* num, int& c);
+int atoiReplica(char*& numString);
 
 int main()
 {
@@ -22,6 +23,8 @@ int main()
     num = "1 2 3    4 5    . 6  7   9  ";
     test(num, c);//good
 
+    num = "-0.123";
+    test(num,c); //good?
 }
 
 void test(char* num, int& c){
@@ -38,17 +41,22 @@ void test(char* num, int& c){
 
 bool characteristic(char* numString, int& c){
     //removes all ' ' from the numString array, which gets returned as a new array
-    numString = removeSpaces(numString); //numString is not passed by reference, so it is a copy of the original
+    //numString is not passed by reference, so it can be overwritten without altering the input
+    numString = removeSpaces(numString);
+    //numString now points to a dynamically allocated array, containing the original string without spaces
 
     //check for all values in the array being a number, '-', '+', or '.'
     if(!checkValidCharacteristic(numString)){
+        delete[] numString;
         return false;
     }
     
-    //at this point, the characteristic is valid, atoi will return a valid characteristic (up to '.')
-    c = atoi(numString);
+    //at this point, the characteristic is valid, return a valid characteristic (up to '.')
+    //can't use atoi,     c = atoi(numString);
+    c = atoiReplica(numString);
 
-    delete[] numString; //numString will point to the dynamically allocated array
+    //numString will point to the dynamically allocated array
+    delete[] numString;
 
     return true;
 }
@@ -121,4 +129,45 @@ bool checkValidCharacteristic(char*& numString){
 
     //all the values in the string are numbers/valid, so return true;
     return true;
+}
+
+int atoiReplica(char*& numString){
+    //This is a replacement for the atoi function, which can't be used in this program
+    //it takes the string and, having already been value checked, converts everything up to '.'
+    int retval = 0;
+    //we need to make sure that we return a negative number if needed
+    bool isnegative = false;
+    
+    //set up pointer to run through numString adding it to retval until we reach a '.' or the end of the string
+    char* ptr = numString;
+
+    //if the first character is negative, we know the number is negative
+    if(*numString == '-'){
+        isnegative = true;
+        //increment ptr
+        ptr++;
+    }
+
+    //if the first character in the array will not change the value of the return, skip it
+    if(*ptr=='+' || *ptr=='0'){
+        ptr++;
+    }
+
+    //loop through the numString and add values to retval appropriately
+    while(*ptr!='.' && *ptr!='\0'){
+        //move the value in retval over a decimal place
+        retval *= 10;
+        //add the next value in the array to the return
+        retval += (int)(*ptr-'0');
+        //increment ptr
+        ptr++;
+    }
+
+    //if the returned value would be negative, make sure it is negative.
+    if(isnegative){
+        retval *= -1;
+    }
+
+    //
+    return retval;
 }
