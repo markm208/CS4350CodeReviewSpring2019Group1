@@ -7,6 +7,8 @@ char* removeSpaces(char*& numString);
 bool checkValidCharacteristic(char*& numString);
 int atoiReplica(char*& numString);
 
+bool mantissa(char numString[], int& numerator, int& denominator);
+
 bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len); 
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
@@ -270,7 +272,7 @@ void shouldConvert(char number[], int expectedCharacteristic, int expectedNumera
 	}
 }
 //--
-void shouldNotConvert(char number[])
+/*void shouldNotConvert(char number[])
 {
 	int c, n, d;
 
@@ -548,3 +550,4 @@ void testDivide()
 	divide(1, 1, 8, 1, 2, 3, largeArray, LARGE_ARRAY_LENGTH);
 	shouldConvert(largeArray, 0, 675, 1000);
 }
+*/
