@@ -142,7 +142,7 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 	//to get the decimal portion of the "float" we will use a helper function which takes the
 	//value of the multiplied denominators and the remainder of the division between the multiplied
 	//numerators and denominators, as well as the length -1 to not overwrite the null terminated char
-	char *decimals = getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators), len);
+	char * decimals = getDecimalPortion(multipliedDenominators, (multipliedNumerators % multipliedDenominators), len);
 
 	i++;			 //i still holds the position from the whole number insertion, and so moving one past it will-
 					 //-allow us to avoid overwriting it
@@ -155,7 +155,7 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 		result[i] = decimals[pos];
 		i++;
 		pos++;
-		if (i == len - 1)
+		if (i == (len - 1))
 		{
 			retval = true; //if we got to here its safe to assume we were able to insert things without issue and can set-
 						   //-retval to true
@@ -193,15 +193,17 @@ char *convertToChars(int toBeConverted, int len)
 char *getDecimalPortion(int dividedInto, int dividedBy, int len) //newfunction to get the decimal portion of float
 {
 	char *arr = new char[len];
-	arr[0] = static_cast<char>(dividedBy); //assign first position in array to be first remainder
+	arr[0] = '0' + (dividedBy); //assign first position in array to be first remainder
 	int counter = 1;
 	if (dividedBy > 0)
 	{
-		while (dividedInto % dividedBy > 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily
+		while (dividedInto % dividedBy >= 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily
 		{
-			arr[counter] = '0' + (dividedInto % dividedBy);
-			dividedInto = dividedBy;
-			dividedBy = arr[counter];
+			//num - '0' converts back to int 
+			arr[counter] = '0' + ((dividedInto-'0') % (dividedBy-'0'));
+			int newdividedBy = (dividedInto - '0') % (dividedBy - '0');
+			dividedInto = dividedBy - '0';
+			dividedBy = newdividedBy;
 			counter++;
 		}
 	}
