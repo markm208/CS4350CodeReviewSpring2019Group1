@@ -199,10 +199,9 @@ char *getDecimalPortion(int dividedInto, int dividedBy, int len) //newfunction t
 	{
 		while (dividedInto % dividedBy >= 1 && counter < len) //keep track of remainder from mod so we are not looping unnecessarily
 		{
-			//num - '0' converts back to int 
-			arr[counter] = '0' + ((dividedInto-'0') % (dividedBy-'0'));
-			int newdividedBy = (dividedInto - '0') % (dividedBy - '0');
-			dividedInto = dividedBy - '0';
+			arr[counter] = '0' + ((dividedInto) % (dividedBy));
+			int newdividedBy = (dividedInto) % (dividedBy);
+			dividedInto = dividedBy;
 			dividedBy = newdividedBy;
 			counter++;
 		}
