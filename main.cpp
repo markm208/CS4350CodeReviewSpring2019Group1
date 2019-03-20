@@ -7,12 +7,12 @@ int power(int x, int y);
 
 int main()
 {
-
+    
     char answer[10];
     int c1, n1, d1;
     int c2, n2, d2;
     ///////
-    c1 = 2;
+    c1 = -2;
     n1 = 3;
     d1 = 10;
     c2 = 1;
@@ -22,12 +22,17 @@ int main()
     if (divide(c1, n1, d1, c2, n2, d2, answer, 10))
     {
         //display string with answer
+        for(int i = 0; i < 10; i++)
+        {
+            cout << answer[i];
+        }
+        cout << endl;
     }
     else
     {
-        cout << "ECH" << endl;
+        cout << "Does not compute." << endl;
     }
-
+    
     return 0;
 }
 
@@ -38,14 +43,14 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
     if (c1 < 0)
     {
         c1 = c1 * -1;
-        isNegative = true;
+        isNegative = !isNegative;
     }
     if (c2 < 0)
     {
         c2 = c2 * -1;
-        isNegative = true;
+        isNegative = !isNegative;
     }
-
+    
     int newDenom1 = (c1 * d1) + n1;
     int numDigits = 0;
     int temp = newDenom1;
@@ -59,56 +64,106 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
     int multiplyer = power(10, (9 - numDigits));
     //this gives an 8 digit number, so the decimals are preserved when dividing
     int bigDenom = newDenom1 * multiplyer;
-
+    
     int newDenom2 = (c2 * d2) + n2;
-
+    
     int answer = bigDenom / newDenom2;
     temp = newDenom1 / newDenom2;
     int decPlace = 1; //decimal point goes at result[1]
+
     while (temp != 0) //this could probably be a function
     {
         decPlace++; //increases index for decimal point for every digit in characteristic of answer
         temp = temp / 10;
     }
+    if(isNegative)
+    {
+        decPlace++;
+    }
+    
+    int temp2 = answer;
+    cout << temp2 << endl;
+    char temparray2[10];
+    for(int i = 0; i < 10; i++)
+    {
+        temparray2[i] = '0' + (temp2 % 10);
+        //cout << temp2 % 10 << endl;
+        //cout << "test " << temparray2[i] << endl;
+        temp2 = temp2 / 10;
+    }
+    /*
+    while (temp2 > 0)
+    {
+        temparray2[count] = static_cast<char>(temp2 % 10);
+        cout << temparray2[count] << " ";
+        temp2 = temp2 / 10;
+        count++;
+    }
+     */
+    cout << endl << "temparray2 ";
+    for (int i = 0; i < len - 1; i++)
+        cout << temparray2[i];
+    cout << endl;
 
     char temparray[10];
-    sprintf(temparray, "%d", answer);
+    
+    // temparray2 into temparray the correct direction
+    int b = 9;
+    while(temparray2[b] == '0')
+    {
+        b--;
+    }
+    int c = b;
+    for(int i = 0; i < b + 1; i++)
+    {
+        temparray[i] = temparray2[c];
+        c--;
+    }
+     
+    
+    
+    //sprintf(temparray, "%d", answer);
+    
     /*
-    for (int i = 0; i < len; i++)
-        cout << temparray[i];
-    cout << endl;
+     for (int i = 0; i < len; i++)
+         cout << temparray[i];
+     cout << endl;
     */
-
+    
+    int j = 0;
     for (int i = 0; i < 10; i++)
     {
-        int j = 0;
         if (i == 0 && isNegative)
         {
-            temparray[i] = '-';
+            result[i] = '-';
             continue;
         }
         if (i == decPlace)
         {
-            temparray[i] = '.';
+            result[i] = '.';
             continue;
         }
-        result[i] = temparray[j];
-        j++;
+        if (i == 9)
+        {
+            result[i] = '\0';
+        }
+        else {
+            result[i] = temparray[j];
+            j++;
+        }
     }
+    
 
-    /*
-    for(int i = 0; i < len; i++)
-        cout << result[i];
-    cout << endl;
-    */
+    return true;
 }
 
 int power(int x, int y) // this should not be a function
 {
     int answer = x;
-    for (int i = 0; i < (y); i++)
+    for (int i = 0; i < (y - 1); i++)
     {
         answer = answer * x;
     }
     return answer;
 }
+
