@@ -12,12 +12,14 @@ int main()
     int c1, n1, d1;
     int c2, n2, d2;
     ///////
+    /*
     c1 = -2;
     n1 = 3;
     d1 = 10;
     c2 = 1;
     n2 = 33;
     d2 = 100;
+    */
     ///////
     if (divide(c1, n1, d1, c2, n2, d2, answer, 10))
     {
@@ -82,7 +84,7 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
     }
     
     int temp2 = answer;
-    cout << temp2 << endl;
+    //cout << temp2 << endl;
     char temparray2[10];
     for(int i = 0; i < 10; i++)
     {
@@ -100,11 +102,12 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
         count++;
     }
      */
+     /*
     cout << endl << "temparray2 ";
     for (int i = 0; i < len - 1; i++)
         cout << temparray2[i];
     cout << endl;
-
+    */
     char temparray[10];
     
     // temparray2 into temparray the correct direction
